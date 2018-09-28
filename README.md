@@ -110,5 +110,5 @@ viewer.run_interaction_continuous_shot()
 Now we see some similar image, we can setup camera features values. Push `Run interaction` to let it go.
 To close OpenCV windows just push 'Q' on your keyboard. You don't have to launch this cell once more to try the same 
 procedure with the image, just change wanted values and push the button. That's it!
-![Basler OpenCV viewer](https://raw.githubusercontent.com/mbalatsko/pypylon-opencv-viewer/master/images/widget.PNG)
+![Basler OpenCV viewer](https://raw.githubusercontent.com/mbalatsko/pypylon-opencv-viewer/master/images/wiget.PNG)
 ![Basler OpenCV viewer](https://raw.githubusercontent.com/mbalatsko/pypylon-opencv-viewer/master/images/opened.PNG)
