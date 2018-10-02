@@ -112,3 +112,16 @@ To close OpenCV windows just push 'Q' on your keyboard. You don't have to launch
 procedure with the image, just change wanted values and push the button. That's it!
 ![Basler OpenCV viewer](https://raw.githubusercontent.com/mbalatsko/pypylon-opencv-viewer/master/images/wiget.PNG)
 ![Basler OpenCV viewer](https://raw.githubusercontent.com/mbalatsko/pypylon-opencv-viewer/master/images/opened.PNG)
+
+#### Save or get image from camera
+
+In previous steps we set up camera features parameters using widgets. Now we can save camera image on disc or get 
+raw openCV image.
+
+```python
+# Save image
+viewer.save_image('grabbed.png', path='~/Documents/images')
+
+# Get grabbed image
+img = viewer.get_image()
+```

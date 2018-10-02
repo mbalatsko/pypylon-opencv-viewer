@@ -269,6 +269,52 @@ class BaslerOpenCVViewer:
             return
         return camera_configuration
 
+    def save_image(self, filename, path='.'):
+        """Saves grabbed image
+
+        Parameters
+        ----------
+        filename : str
+            Filename of grabbed image
+        path : str
+            Path to saved image
+
+        Returns
+        -------
+        None
+        """
+        if self._camera is None or not self._camera.IsOpen():
+            raise ValueError("Camera object {} is closed.".format(self._camera))
+
+        converter = pylon.ImageFormatConverter()
+        converter.OutputPixelFormat = pylon.PixelType_BGR8packed
+        converter.OutputBitAlignment = pylon.OutputBitAlignment_MsbAligned
+
+        grab_result = self._camera.GrabOne(5000)
+        image = converter.Convert(grab_result)
+        img = image.GetArray()
+        cv2.imwrite(path + '/' + filename, img)
+
+    def get_image(self):
+        """Returns grabbed image
+
+        Returns
+        -------
+        openCV image
+        """
+        if self._camera is None or not self._camera.IsOpen():
+            raise ValueError("Camera object {} is closed.".format(self._camera))
+
+        converter = pylon.ImageFormatConverter()
+        converter.OutputPixelFormat = pylon.PixelType_BGR8packed
+        converter.OutputBitAlignment = pylon.OutputBitAlignment_MsbAligned
+
+        grab_result = self._camera.GrabOne(5000)
+        image = converter.Convert(grab_result)
+        img = image.GetArray()
+        return img
+
+
     def _resolve_widget_type(self, widget_type_name):
         """Converts widget type name into widget object
 
