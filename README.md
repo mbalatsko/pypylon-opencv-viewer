@@ -1,5 +1,9 @@
 # Basler PyPylon OpenCV viewer for Jupyter Notebook
 
+[![PyPI version](https://badge.fury.io/py/pypylon-opencv-viewer.svg)](https://badge.fury.io/py/pypylon-opencv-viewer)
+[![Downloads](https://pepy.tech/badge/pypylon-opencv-viewer)](https://pepy.tech/project/pypylon-opencv-viewer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Easy to use Jupyter notebook viewer connecting Basler Pylon images grabbing with OpenCV image processing.
 Allows to specify interactive Jupyter widgets to manipulate Basler camera features values, grab camera image and at
 once get an OpenCV window on which raw camera output is displayed or you can specify an image processing function,
