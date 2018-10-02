@@ -120,7 +120,7 @@ raw openCV image.
 
 ```python
 # Save image
-viewer.save_image('grabbed.png', path='~/Documents/images')
+viewer.save_image('~/Documents/images/grabbed.png')
 
 # Get grabbed image
 img = viewer.get_image()
