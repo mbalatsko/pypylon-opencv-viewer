@@ -9,15 +9,15 @@ with open('README.md') as f:
 setup(
     name='pypylon-opencv-viewer',
     packages=find_packages(),
-    version='1.0.1',
-    description='Save on disc added, Get image added',
+    version='1.0.2',
+    description='Save image, while interaction functionality',
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='MIT License',
     author='Maksym Balatsko',
     author_email='mbalatsko@gmail.com',
     url='https://github.com/mbalatsko/pypylon-opencv-viewer',
-    download_url='https://github.com/mbalatsko/pypylon-opencv-viewer/archive/1.0.1.tar.gz',
+    download_url='https://github.com/mbalatsko/pypylon-opencv-viewer/archive/1.0.2.tar.gz',
     install_requires=[
         'opencv-python',
         'jupyter',
