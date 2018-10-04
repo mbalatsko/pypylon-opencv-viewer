@@ -87,7 +87,7 @@ features = [
 #### Example image processing function
 Just example image processing function, which negatives the image. Image has to be the only argument in it. 
 If you want some image to be shown, you have to do it yourself inside the function. DON'T DESTROY
-ALL OpenCV windows in it.
+ALL OpenCV windows or wait for key pressed in it.
 
 ```python
 import numpy as np
@@ -102,13 +102,14 @@ def impro(img):
 #### Viewer
 We have prepared all required parts. Now we just set them to the viewer object and launch image grabbing:
 `run_interaction_continuous_shot` for continuous or `run_interaction_single_shot` for single shot.
+Also you can press 'S' button to save raw camera image to `image_folder`.
 ```python
 from pypylon_opencv_viewer import BaslerOpenCVViewer
     
 viewer = BaslerOpenCVViewer(camera)
 viewer.set_features(features)
 viewer.set_impro_function(impro)
-viewer.run_interaction_continuous_shot()
+viewer.run_interaction_continuous_shot(image_folder='~/Documents/images')
 ```
 
 Now we see some similar image, we can setup camera features values. Push `Run interaction` to let it go.
