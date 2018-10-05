@@ -19,22 +19,21 @@ pip install pypylon-opencv-viewer
 
 To start working, launch Jupyter notebook and connect to Basler camera. Here is an example how you can do it:
 ```python
-
 from pypylon import pylon 
 
 # Pypylon get camera by serial number
-serial_number = '22018112'
-camera = None
+serial_number = '22716154'
+info = None
 for i in pylon.TlFactory.GetInstance().EnumerateDevices():
     if i.GetSerialNumber() == serial_number:
-        camera = i
+        info = i
         break
 else:
     print('Camera with {} serial number not found'.format(serial_number))
 
 # VERY IMPORTANT STEP! To use Basler PyPylon OpenCV viewer you have to call .Open() method on you camera
-if camera is not None:
-    camera.Open()
+if info is not None:
+    camera = pylon.InstantCamera(pylon.TlFactory.GetInstance().CreateDevice(info)) 
 ```
 
 Now we can start working with our viewer. Basically we need 3 things: connected camera, features we want to work with
