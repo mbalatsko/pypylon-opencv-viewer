@@ -33,7 +33,8 @@ else:
 
 # VERY IMPORTANT STEP! To use Basler PyPylon OpenCV viewer you have to call .Open() method on you camera
 if info is not None:
-    camera = pylon.InstantCamera(pylon.TlFactory.GetInstance().CreateDevice(info)) 
+    camera = pylon.InstantCamera(pylon.TlFactory.GetInstance().CreateDevice(info))
+    camera.Open()
 ```
 
 Now we can start working with our viewer. Basically we need 3 things: connected camera, features we want to work with
