@@ -109,7 +109,7 @@ def impro(img):
 #### Viewer
 We have prepared all required parts. Now we just set them to the viewer object and launch image grabbing:
 `run_interaction_continuous_shot` for continuous or `run_interaction_single_shot` for single shot.
-Also you can press 'S' button to save raw camera image to `image_folder`.
+Also you can press 'S' button to save raw camera image or impro function return value to `image_folder`.
 ```python
 from pypylon_opencv_viewer import BaslerOpenCVViewer
     
@@ -128,7 +128,7 @@ procedure with the image, just change wanted values and push the button. That's 
 #### Save or get image from camera
 
 In previous steps we set up camera features parameters using widgets. Now we can save camera image on disc or get 
-raw openCV image.
+raw openCV image (impro function return value if specified).
 
 ```python
 # Save image

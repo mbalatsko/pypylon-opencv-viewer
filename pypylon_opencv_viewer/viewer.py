@@ -4,7 +4,6 @@ from ipywidgets import interact_manual
 import ipywidgets as widgets
 
 from pypylon import pylon
-from IPython.display import clear_output, display
 import re
 import os
 import datetime
@@ -161,7 +160,8 @@ class BaslerOpenCVViewer:
                                         window_size=None, image_folder='.'):
         """ Creates Jupyter notebook widgets with all specified features value controls. Push the button 'Run interact'
         to run continuous image grabbing and applying image processing function, if specified. To close openCV windows
-        push 'q' button on your keyboard. Press 'S' button to save raw camera image.
+        push 'q' button on your keyboard. Press 'S' button to save raw camera image or impro function return value
+        if specified.
 
         Parameters
         ----------
@@ -184,7 +184,7 @@ class BaslerOpenCVViewer:
     def run_interaction_single_shot(self, window_size=None, image_folder='.'):
         """ Creates Jupyter notebook widgets with all specified features value controls. Push the button 'Run interact'
         to grab one image and apply image processing function, if specified. To close openCV windows push 'q' button on
-        your keyboard. Press 'S' button to save raw camera image.
+        your keyboard. Press 'S' button to save raw camera image or impro function return value if specified.
 
         Parameters
         ----------
@@ -205,7 +205,7 @@ class BaslerOpenCVViewer:
     def _continuous_interaction_function_wrap(self, grab_strategy, window_size=None, image_folder='.'):
         """ Creates Jupyter notebook interact function, which sets up camera with input parameters and runs image
         processing function on continuously grabbing images, if specified, if not displays continuously grabbing raw
-        amera images.
+        camera images.
 
         Parameters
         ----------
@@ -248,7 +248,7 @@ class BaslerOpenCVViewer:
                     img = image.GetArray()
 
                     if self._impro_function is not None:
-                        self._impro_function(img)
+                        img = self._impro_function(img)
                     else:
                         cv2.imshow('camera_image', img)
                     k = cv2.waitKey(1) & 0xFF
@@ -258,9 +258,6 @@ class BaslerOpenCVViewer:
                                                  '.png'), img)
                     elif k == ord('q'):
                         break
-                    display('Resulting Frame rate: ' + str(round(self._camera.ResultingFrameRateAbs.GetValue(), 1))
-                            + ' fps')
-                    clear_output(wait=True)
                 grab_result.Release()
             cv2.destroyAllWindows()
             self._camera.StopGrabbing()
@@ -305,7 +302,7 @@ class BaslerOpenCVViewer:
             img = image.GetArray()
 
             if self._impro_function is not None:
-                self._impro_function(img)
+                img = self._impro_function(img)
             else:
                 cv2.imshow('camera_image', img)
             while True:
@@ -321,7 +318,7 @@ class BaslerOpenCVViewer:
         return camera_configuration
 
     def save_image(self, filename):
-        """Saves grabbed image
+        """Saves grabbed image or impro function return value, if specified
 
         Parameters
         ----------
@@ -342,10 +339,12 @@ class BaslerOpenCVViewer:
         grab_result = self._camera.GrabOne(5000)
         image = converter.Convert(grab_result)
         img = image.GetArray()
+        if self._impro_function:
+            img = self._impro_function(img)
         cv2.imwrite(filename, img)
 
     def get_image(self):
-        """Returns grabbed image
+        """Returns grabbed image or impro function return value, if specified
 
         Returns
         -------
@@ -361,4 +360,6 @@ class BaslerOpenCVViewer:
         grab_result = self._camera.GrabOne(5000)
         image = converter.Convert(grab_result)
         img = image.GetArray()
+        if self._impro_function:
+            img = self._impro_function(img)
         return img
